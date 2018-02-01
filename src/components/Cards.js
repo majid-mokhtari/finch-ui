@@ -10,7 +10,7 @@ class Cards extends Component {
       <View style={styles.card}>
         <Image 
           style={{flex: 1}}
-          source={{uri: reactImage}}
+          source={{uri: fbImage}}
         />
         <View style={{margin: 20}}>
           <Text style={{fontSize: 28}} >Christine, 26</Text>
