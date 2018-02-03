@@ -21,6 +21,9 @@ class Login extends Component {
     render(){
         return (
             <View style={styles.loginWrapper}>
+                <View style={styles.carousel}>
+
+                </View>
                 <View style={styles.fbBtn}>
                   <Button
                       onPress={this.logInFacebook.bind(this)}
@@ -33,23 +36,35 @@ class Login extends Component {
                       title="LOGIN IN WITH PHONE NUMBER"
                       color="grey" />
                 </View>
+                <View style={styles.terms}>
+                    <Text style={styles.firstText}>
+                        We don't post anything on Facebook 
+                    </Text>
+                    <Text style={styles.secondText}>
+                        By signing, you agree to our terms of Service and Privacy Policy 
+                    </Text>
+                </View>
           </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+  carousel: {
+    backgroundColor: 'pink',
+    height: 200,
+    width: '80%'
+  },
   loginWrapper: {
     flex: 1, 
     alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 2
+    justifyContent: 'center'
   },
   fbBtn: {
     backgroundColor: "#4267b2",
     padding: 5,
     width: '80%',
-    borderRadius: 50
+    borderRadius: 40
   },
   phoneBtn: {
     backgroundColor: "white",
@@ -61,6 +76,20 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginTop: 10
   },
+  terms: {
+      width: '80%',
+      alignItems: 'center',
+      marginTop: 20
+  },
+  firstText: {
+    width: '80%'
+  },
+  secondText: {
+      width: '80%', 
+      marginTop: 10, 
+      textAlign: 'center', 
+      lineHeight: 20
+  }
 });
 
 export default Login;
