@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   loginWrapper: {
     flex: 1, 
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    fontSize: 2
   },
   fbBtn: {
     backgroundColor: "#4267b2",
