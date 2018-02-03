@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,  Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 class Login extends Component {
 
@@ -20,15 +20,46 @@ class Login extends Component {
 
     render(){
         return (
-            <View style={{flex: 1, justifyContent: 'center'}}>
-                <Button
-                    onPress={this.logInFacebook.bind(this)}
-                    title="LOGIN IN WITH FACEBOOK"
-                    color="skyblue"
-                >LOGIN WITH FACEBOOK</Button>
+            <View style={styles.loginWrapper}>
+                <View style={styles.fbBtn}>
+                  <Button
+                      onPress={this.logInFacebook.bind(this)}
+                      title="LOGIN IN WITH FACEBOOK"
+                      color="white" />
+                </View>
+                <View style={styles.phoneBtn}>
+                  <Button
+                      onPress={this.logInFacebook.bind(this)}
+                      title="LOGIN IN WITH PHONE NUMBER"
+                      color="grey" />
+                </View>
           </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+  loginWrapper: {
+    flex: 1, 
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  fbBtn: {
+    backgroundColor: "#4267b2",
+    padding: 5,
+    width: '80%',
+    borderRadius: 50
+  },
+  phoneBtn: {
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    borderWidth: 1,
+    padding: 5,
+    width: '80%',
+    borderRadius: 50,
+    marginTop: 10
+  },
+});
 
 export default Login;
