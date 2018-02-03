@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import Carousel from './Carousel';
 
 class Login extends Component {
 
@@ -22,7 +23,7 @@ class Login extends Component {
         return (
             <View style={styles.loginWrapper}>
                 <View style={styles.carousel}>
-
+                    <Carousel />
                 </View>
                 <View style={styles.fbBtn}>
                   <Button
@@ -51,9 +52,13 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
   carousel: {
-    backgroundColor: 'pink',
-    height: 200,
-    width: '80%'
+    height: '50%',
+    width: '80%',
+    marginBottom: 50,
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    borderWidth: 1,
+    borderRadius: 10
   },
   loginWrapper: {
     flex: 1, 
