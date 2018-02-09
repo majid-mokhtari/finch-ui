@@ -55,9 +55,6 @@ const styles = StyleSheet.create({
     height: '50%',
     width: '80%',
     marginBottom: 50,
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    borderWidth: 1,
     borderRadius: 10
   },
   loginWrapper: {
@@ -79,21 +76,21 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '80%',
     borderRadius: 50,
-    marginTop: 10
+    marginTop: 15
   },
   terms: {
-      width: '80%',
-      alignItems: 'center',
-      marginTop: 20
+    width: '80%',
+    alignItems: 'center',
+    marginTop: 20
   },
   firstText: {
     width: '80%'
   },
   secondText: {
-      width: '80%', 
-      marginTop: 10, 
-      textAlign: 'center', 
-      lineHeight: 20
+    width: '80%', 
+    marginTop: 10, 
+    textAlign: 'center', 
+    lineHeight: 20
   }
 });
 
