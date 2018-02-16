@@ -5,7 +5,7 @@ import * as userActions from '../actions/userActions';
 import {View} from 'react-native';
 import Welcome from './../components/Welcome';
 
-class AppContainer extends Component {
+class AuthContainer extends Component {
     render(){
         return (
             <View style={{flex: 1}}>
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
       };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AppContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(AuthContainer)

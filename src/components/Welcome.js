@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import Carousel from './Carousel';
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 class Welcome extends Component {
 
-    async onFBLoginClick() {
+    async onjoinUsClick() {
         const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('575699949448392', {
             permissions: ['public_profile'],
           });
@@ -21,21 +22,25 @@ class Welcome extends Component {
       }
 
     onEmailLoginClick(){
-      this.props.userActions.loginUser();
+      Actions.login();
+    }
+
+    onjoinUsClick(){
+      Actions.signup();
     }
 
     render(){
       const { data } = this.props.userReducer;
       console.log(data)
         return (
-            <View style={styles.loginWrapper}>
+            <View style={styles.welcomeWrapper}>
                 <View style={styles.carousel}>
                     <Carousel />
                 </View>
-                <View style={styles.fbBtn}>
+                <View style={styles.joinUsBtn}>
                   <Button
-                      onPress={this.onFBLoginClick.bind(this)}
-                      title="LOGIN WITH FACEBOOK"
+                      onPress={this.onjoinUsClick.bind(this)}
+                      title="JOIN US"
                       color="white" />
                 </View>
                 <View style={styles.phoneBtn}>
@@ -64,13 +69,13 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     borderRadius: 10
   },
-  loginWrapper: {
+  welcomeWrapper: {
     flex: 1, 
     alignItems: 'center',
     justifyContent: 'center'
   },
-  fbBtn: {
-    backgroundColor: "#4267b2",
+  joinUsBtn: {
+    backgroundColor: "red",
     padding: 5,
     width: '80%',
     borderRadius: 40
