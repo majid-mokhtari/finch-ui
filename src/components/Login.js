@@ -28,13 +28,13 @@ class Login extends Component {
                 <View style={styles.fbBtn}>
                   <Button
                       onPress={this.logInFacebook.bind(this)}
-                      title="LOGIN IN WITH FACEBOOK"
+                      title="LOGIN WITH FACEBOOK"
                       color="white" />
                 </View>
                 <View style={styles.phoneBtn}>
                   <Button
                       onPress={this.logInFacebook.bind(this)}
-                      title="LOGIN IN WITH PHONE NUMBER"
+                      title="LOGIN WITH EMAIL"
                       color="grey" />
                 </View>
                 <View style={styles.terms}>
