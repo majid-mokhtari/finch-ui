@@ -1,7 +1,7 @@
 import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_ERROR} from '../constants/';
-import getDataApi from '../api/api'
+import axios from 'axios';
 
-export const getData = () => {
+export const loading = () => {
     return {
         type: FETCHING_DATA
     }
@@ -22,13 +22,13 @@ export const getDataFailure = (err) => {
 }
 
 // async thunk fetchData
-export const fetchData = (genres) => {
+export const loginUser = (genres) => {
     return (dispatch) => {
-        dispatch(getData())
-        getDataApi(genres)
-            .then(([response, json]) => {
-                dispatch(getDataSuccess(json))
-            })
-            .catch((err) => dispatch(getDataFailure(err)))
+        dispatch(loading())
+        axios.get('http://localhost:8000/users')
+        .then(function ({data}) {
+            dispatch(getDataSuccess(data))
+        })
+        .catch((err) => dispatch(getDataFailure(err)))
     }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import Carousel from './Carousel';
+import axios from 'axios';
 
-class Login extends Component {
+class Welcome extends Component {
 
-    async logInFacebook() {
+    async onFBLoginClick() {
         const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('575699949448392', {
             permissions: ['public_profile'],
           });
@@ -19,7 +20,12 @@ class Login extends Component {
         }
       }
 
+    onEmailLoginClick(){
+      this.props.userActions.loginUser();
+    }
+
     render(){
+      console.log(this.props)
         return (
             <View style={styles.loginWrapper}>
                 <View style={styles.carousel}>
@@ -27,13 +33,13 @@ class Login extends Component {
                 </View>
                 <View style={styles.fbBtn}>
                   <Button
-                      onPress={this.logInFacebook.bind(this)}
+                      onPress={this.onFBLoginClick.bind(this)}
                       title="LOGIN WITH FACEBOOK"
                       color="white" />
                 </View>
                 <View style={styles.phoneBtn}>
                   <Button
-                      onPress={this.logInFacebook.bind(this)}
+                      onPress={this.onEmailLoginClick.bind(this)}
                       title="LOGIN WITH EMAIL"
                       color="grey" />
                 </View>
@@ -94,4 +100,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default Welcome;

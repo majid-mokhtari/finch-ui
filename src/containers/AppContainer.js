@@ -1,31 +1,31 @@
 import React, {Component} from 'react'
-import {
-    Text,
-    View,
-    StyleSheet,
-    ScrollView
-} from 'react-native'
-
-import {connect} from 'react-redux'
-
-import Login from './../components/Login'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as userActions from '../actions/userActions';
+import {View} from 'react-native';
+import Welcome from './../components/Welcome';
 
 class AppContainer extends Component {
-
     render(){
-        
+        console.log(this.props)
         return (
             <View style={{flex: 1}}>
-                {Login}
+                <Welcome {...this.props} />
             </View>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'black'
+const mapStateToProps = ({ userReducer }) => {
+    return {
+        userReducer
     }
-})
+}
 
-export default connect(state => ({shows: state.shows}))(AppContainer)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+      };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AppContainer)
