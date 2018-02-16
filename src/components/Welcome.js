@@ -25,7 +25,8 @@ class Welcome extends Component {
     }
 
     render(){
-      console.log(this.props)
+      const { data } = this.props.userReducer;
+      console.log(data)
         return (
             <View style={styles.loginWrapper}>
                 <View style={styles.carousel}>

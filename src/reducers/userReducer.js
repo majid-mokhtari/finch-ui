@@ -1,12 +1,12 @@
 import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_ERROR} from '../constants';
 
 const initialState = {
-    user: null,
+    data: null,
     loggedIn: false,
     error: false
 }
 
-export default userReducer = (state = initialState, action) => {
+export function userReducer(state = initialState, action){
     switch(action.type){
         case FETCHING_DATA:
             return {
