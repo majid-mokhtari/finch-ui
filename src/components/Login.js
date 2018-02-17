@@ -5,6 +5,7 @@ import axios from 'axios';
 
 class Login extends Component {
     render(){
+        const { userActions, userReducer } = this.props;
         return (
             <View style={{flex: 1}}>
                 <Text>Hello World</Text>

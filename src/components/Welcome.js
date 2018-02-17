@@ -22,16 +22,17 @@ class Welcome extends Component {
       }
 
     onEmailLoginClick(){
-      Actions.login();
+      const { userActions, userReducer } = this.props;
+      Actions.login({ userActions, userReducer });
     }
 
     onjoinUsClick(){
-      Actions.signup();
+      const { userActions, userReducer } = this.props;
+      Actions.signup({ userActions, userReducer });
     }
 
     render(){
       const { data } = this.props.userReducer;
-      console.log(data)
         return (
             <View style={styles.welcomeWrapper}>
                 <View style={styles.carousel}>
@@ -50,9 +51,6 @@ class Welcome extends Component {
                       color="grey" />
                 </View>
                 <View style={styles.terms}>
-                    <Text style={styles.firstText}>
-                        We don't post anything on Facebook 
-                    </Text>
                     <Text style={styles.secondText}>
                         By signing, you agree to our terms of Service and Privacy Policy 
                     </Text>
@@ -64,9 +62,9 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({
   carousel: {
-    height: '50%',
+    height: '65%',
     width: '80%',
-    marginBottom: 50,
+    marginBottom: 20,
     borderRadius: 10
   },
   welcomeWrapper: {
@@ -95,12 +93,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20
   },
-  firstText: {
-    width: '80%'
-  },
   secondText: {
     width: '80%', 
-    marginTop: 10, 
     textAlign: 'center', 
     lineHeight: 20
   }
