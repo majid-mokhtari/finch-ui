@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   terms: {
     width: '80%',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 15
   },
   secondText: {
     width: '80%', 
