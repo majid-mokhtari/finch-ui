@@ -28,7 +28,7 @@ class MyCarousel extends Component {
               ref={(c) => { this._carousel = c; }}
               data={ENTRIES1}
               renderItem={this._renderItem}
-              sliderWidth={330}
+              sliderWidth={390}
               itemWidth={300}
             />
         );
@@ -37,7 +37,7 @@ class MyCarousel extends Component {
 
 const styles = StyleSheet.create({
     description: {
-        flex: 1
+        flex: 1,
     },
     title: {
         marginTop: 20

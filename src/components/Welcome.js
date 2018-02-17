@@ -63,7 +63,6 @@ class Welcome extends Component {
 const styles = StyleSheet.create({
   carousel: {
     height: '65%',
-    width: '80%',
     marginBottom: 20,
     borderRadius: 10
   },
