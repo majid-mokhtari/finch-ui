@@ -4,7 +4,6 @@ import Carousel from './Carousel';
 import axios from 'axios';
 
 class Login extends Component {
-
     render(){
         return (
             <View style={{flex: 1}}>
