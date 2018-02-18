@@ -8,8 +8,8 @@ const RouterComponent = () => {
     return (
         <Router>
             <Stack key="root">
-                <Scene key="auth" component={AuthContainer} title="Welcome" />
-                <Scene key="login" component={Login} title="Please Login" initial />
+                <Scene key="auth" component={AuthContainer} title="Welcome"  initial/>
+                <Scene key="login" component={Login} title="Please Login"  />
                 <Scene key="signup" component={Signup} title="Please Sign up" />
             </Stack>
         </Router>

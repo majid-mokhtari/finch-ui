@@ -7,47 +7,72 @@ const User = Tcomb.struct({
   email: Tcomb.String,             
   password: Tcomb.String,  
 });
+const inputStyles = {
+  ...Form.stylesheet,
+  textbox: {
+    ...Form.stylesheet.textbox,
+    normal: {
+      ...Form.stylesheet.textbox.normal,
+      height: 50
+    },
+    error: {
+      ...Form.stylesheet.textbox.error,
+      height: 50
+    }
+  }
+}
 const options = {
     fields: {
         email: {
           label: 'Email',
           placeholder: 'Please enter email',
-          error: 'Insert a valid email'
+          error: 'Insert a valid email',
+          stylesheet: inputStyles
         },
         password: {
           label: 'Password',
-          placeholder: 'Please enter password'
+          placeholder: 'Please enter password',
+          stylesheet: inputStyles
         }
       }
 };
 
 class Login extends Component {
 
-    onPress() {
-        var value = this.refs.form.getValue();
-        if (value) { // if validation fails, value will be null
-          console.log(value); // value here is an instance of Person
+    onLoginPress() {
+        let value = this.refs.form.getValue();
+        if (value) { 
+          console.log(value);
         }
       }
     
-      render() {
+    onForgotPassPress(){
+        console.log("worked")
+    }
+
+    render() {
         return (
-          <View style={styles.container}>
-            <Form
-              ref="form"
-              type={User}
-              options={options}
-            />
-            <TouchableHighlight 
-                style={styles.button} 
-                onPress={this.onPress.bind(this)} 
-                underlayColor='#99d9f4'
-            >
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableHighlight>
-          </View>
+            <View style={styles.container}>
+              <Form
+                  ref="form"
+                  type={User}
+                  options={options}
+              />
+              <TouchableHighlight 
+                  style={styles.button} 
+                  onPress={this.onLoginPress.bind(this)} 
+                  underlayColor='#99d9f4'
+              >
+                  <Text style={styles.buttonText}>Login</Text>
+              </TouchableHighlight>
+              <Text 
+                  style={styles.forgotPassText} 
+                  onPress={this.onForgotPassPress.bind(this)}  >
+                  Forgot your password?
+              </Text>
+            </View>
         );
-      }
+    }
 }
 
 var styles = StyleSheet.create({
@@ -71,7 +96,13 @@ var styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'red',
     borderRadius: 8,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 10
+  },
+  forgotPassText: {
+    padding: 20,
+    textAlign: 'center',
+    color: '#FF7575'
   }
 });
 

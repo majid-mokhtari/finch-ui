@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   carousel: {
     height: '65%',
     marginBottom: 20,
-    borderRadius: 10
+    borderRadius: 10,
   },
   welcomeWrapper: {
     flex: 1, 
