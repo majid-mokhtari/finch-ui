@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  AppRegistry,
   Image
 } from 'react-native';
 import Carousel from 'react-native-carousel-view';
@@ -18,13 +17,13 @@ export default class WelcomeCarousel extends Component {
         <View style={styles.container}>
           <Carousel
             width={375}
-            height={450}
+            height={400}
             delay={5000}
             indicatorAtBottom={true}
             indicatorSize={20}
             indicatorText="&bull;"
             indicatorColor="grey"
-            indicatorOffset={-10}
+            indicatorOffset={0}
             inactiveIndicatorText="&#9702;"
             >
             <View style={styles.contentContainer}>
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 25
   },
   contentContainer: {
     justifyContent: 'center',
@@ -62,8 +61,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   secondImageStyle: {
-    width: 300, 
-    height: 420, 
+    width: 310, 
+    height: 330, 
     borderRadius: 5
   },
 });
