@@ -1,47 +1,69 @@
-import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon } from 'native-base';
-const cards = [
-  {
-    text: 'Card One',
-    name: 'One',
-    image: 'https://imgur.com/zSBKKbw.jpg',
-  },
-];
-export default class DeckSwiperExample extends Component {
+import React, {Component} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  AppRegistry,
+  Image
+} from 'react-native';
+import Carousel from 'react-native-carousel-view';
+
+export default class WelcomeCarousel extends Component {
   render() {
     return (
-      <Container>
-        <Header />
-        <View>
-          <DeckSwiper
-            dataSource={cards}
-            renderItem={item =>
-              <Card style={{ elevation: 3 }}>
-                <CardItem>
-                  <Left>
-                    <Thumbnail source={{uri: item.image}} />
-                    <Body>
-                      <Text>{item.text}</Text>
-                      <Text note>NativeBase</Text>
-                    </Body>
-                  </Left>
-                </CardItem>
-                <CardItem cardBody>
-                  <Image 
-                    style={{ height: 200, flex: 1 }} 
-                    source={{uri: item.image}} 
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <View style={styles.container}>
+          <Carousel
+            width={375}
+            height={450}
+            delay={5000}
+            indicatorAtBottom={true}
+            indicatorSize={20}
+            indicatorText="&bull;"
+            indicatorColor="grey"
+            indicatorOffset={-10}
+            inactiveIndicatorText="&#9702;"
+            >
+            <View style={styles.contentContainer}>
+                <Image 
+                  source={require('../images/finch_logo.png')}
+                  style={styles.firstImageStyle}
                 />
-                </CardItem>
-                <CardItem>
-                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                  <Text>{item.name}</Text>
-                </CardItem>
-              </Card>
-            }
-          />
+            </View>
+            <View style={styles.contentContainer}>
+              <Image 
+                  source={require('../images/match.png')}
+                  style={styles.secondImageStyle}
+                />
+            </View>
+          </Carousel>
         </View>
-      </Container>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
+  contentContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  firstImageStyle: {
+    width: 450, 
+    height: 400, 
+    borderRadius: 5
+  },
+  secondImageStyle: {
+    width: 300, 
+    height: 420, 
+    borderRadius: 5
+  },
+});

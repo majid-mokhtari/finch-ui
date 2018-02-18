@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, Alert, Image } from 'react-native';
-//import Carousel from './Carousel';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
-import DeckSwiperExample from './Carousel';
+import WelcomeCarousel from './Carousel';
 
 class Welcome extends Component {
 
@@ -22,10 +21,7 @@ class Welcome extends Component {
         return (
             <View style={styles.welcomeWrapper}>
                 <View >
-                    <Image 
-                      source={require('../images/match.png')}
-                      style={styles.imageStyle}
-                    />
+                    <WelcomeCarousel />
                 </View>
                 <View style={styles.joinUsBtn}>
                   <Button
@@ -54,13 +50,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginTop: 30,
-  },
-  imageStyle: {
-    width: 300, 
-    height: 450, 
-    marginBottom: 30,
-    borderRadius: 5
+    marginTop: 20,
   },
   joinUsBtn: {
     backgroundColor: "red",
