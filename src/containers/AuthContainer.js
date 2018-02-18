@@ -8,7 +8,7 @@ import Welcome from './../components/Welcome';
 class AuthContainer extends Component {
     render(){
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <Welcome {...this.props} />
             </View>
         )

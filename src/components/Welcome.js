@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
-import Carousel from './Carousel';
+import { View, Text, Button, StyleSheet, Alert, Image } from 'react-native';
+//import Carousel from './Carousel';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import DeckSwiperExample from './Carousel';
 
 class Welcome extends Component {
-
-    async onjoinUsClick() {
-        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('575699949448392', {
-            permissions: ['public_profile'],
-          });
-        if (type === 'success') {
-          // Get the user's name using Facebook's Graph API
-          const response = await fetch(
-            `https://graph.facebook.com/me?access_token=${token}`);
-          Alert.alert(
-            'Logged in!',
-            `Hi ${(await response.json()).name}!`,
-          );
-        }
-      }
 
     onEmailLoginClick(){
       const { userActions, userReducer } = this.props;
@@ -35,8 +21,11 @@ class Welcome extends Component {
       const { data } = this.props.userReducer;
         return (
             <View style={styles.welcomeWrapper}>
-                <View style={styles.carousel}>
-                    <Carousel />
+                <View >
+                    <Image 
+                      source={require('../images/match.png')}
+                      style={styles.imageStyle}
+                    />
                 </View>
                 <View style={styles.joinUsBtn}>
                   <Button
@@ -44,7 +33,7 @@ class Welcome extends Component {
                       title="JOIN US"
                       color="white" />
                 </View>
-                <View style={styles.phoneBtn}>
+                <View style={styles.phoneBtn}>  
                   <Button
                       onPress={this.onEmailLoginClick.bind(this)}
                       title="LOGIN WITH EMAIL"
@@ -61,15 +50,17 @@ class Welcome extends Component {
 }
 
 const styles = StyleSheet.create({
-  carousel: {
-    height: '65%',
-    marginBottom: 20,
-    borderRadius: 10,
-  },
   welcomeWrapper: {
     flex: 1, 
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
+    marginTop: 30,
+  },
+  imageStyle: {
+    width: 300, 
+    height: 450, 
+    marginBottom: 30,
+    borderRadius: 5
   },
   joinUsBtn: {
     backgroundColor: "red",

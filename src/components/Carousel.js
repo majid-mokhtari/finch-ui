@@ -1,47 +1,47 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, Alert, Image } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
-import { ENTRIES1 } from '../images/entries';
-
-class MyCarousel extends Component {
-
-    _renderItem ({item, index}) {
-        return (
-            <View style={styles.description}>
-                <Image 
-                    style={{flex: 1, borderRadius: 10}}
-                    source={{uri: item.illustration}}
-                    onPress={() => {this._onPress.bind(this)}}
+import { Image } from 'react-native';
+import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon } from 'native-base';
+const cards = [
+  {
+    text: 'Card One',
+    name: 'One',
+    image: 'https://imgur.com/zSBKKbw.jpg',
+  },
+];
+export default class DeckSwiperExample extends Component {
+  render() {
+    return (
+      <Container>
+        <Header />
+        <View>
+          <DeckSwiper
+            dataSource={cards}
+            renderItem={item =>
+              <Card style={{ elevation: 3 }}>
+                <CardItem>
+                  <Left>
+                    <Thumbnail source={{uri: item.image}} />
+                    <Body>
+                      <Text>{item.text}</Text>
+                      <Text note>NativeBase</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody>
+                  <Image 
+                    style={{ height: 200, flex: 1 }} 
+                    source={{uri: item.image}} 
                 />
-                <Text style={styles.title}>{ item.title }</Text>
-            </View>
-        );
-    }
-
-    _onPress(){
-        Alert.alert("dsf");
-    }
-
-    render () {
-        return (
-            <Carousel
-              ref={(c) => { this._carousel = c; }}
-              data={ENTRIES1}
-              renderItem={this._renderItem}
-              sliderWidth={390}
-              itemWidth={300}
-            />
-        );
-    }
+                </CardItem>
+                <CardItem>
+                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
+                  <Text>{item.name}</Text>
+                </CardItem>
+              </Card>
+            }
+          />
+        </View>
+      </Container>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-    description: {
-        flex: 1,
-    },
-    title: {
-        marginTop: 20
-    }
-  });
-
-export default MyCarousel;
