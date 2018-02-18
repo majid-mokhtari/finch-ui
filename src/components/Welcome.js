@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     padding: 5,
     width: '80%',
-    borderRadius: 40
+    borderRadius: 10
   },
   phoneBtn: {
     backgroundColor: "white",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5,
     width: '80%',
-    borderRadius: 50,
+    borderRadius: 10,
     marginTop: 15
   },
   terms: {
