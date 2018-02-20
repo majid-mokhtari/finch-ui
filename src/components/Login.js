@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Tcomb from 'tcomb-form-native';
+import { Spinner } from 'native-base';
 
 const { Form } = Tcomb.form;    
 const User = Tcomb.struct({
@@ -32,17 +33,29 @@ const options = {
         password: {
           label: 'Password',
           placeholder: 'Please enter password',
-          stylesheet: inputStyles
+          stylesheet: inputStyles,
+          error: 'Insert a valid password',
         }
       }
 };
 
 class Login extends Component {
 
+    constructor(props){
+      super();
+      this.state = {
+        value: {
+          email: "",
+          password: ""
+        }
+      }
+    }
+
     onLoginPress() {
         let value = this.refs.form.getValue();
+        const { userActions } = this.props;
         if (value) { 
-          console.log(value);
+          userActions.loginUser(value);
         }
       }
     
@@ -50,28 +63,34 @@ class Login extends Component {
         console.log("worked")
     }
 
+    onChange(){
+
+    }
+    
     render() {
-        return (
-            <View style={styles.container}>
-              <Form
-                  ref="form"
-                  type={User}
-                  options={options}
-              />
-              <TouchableHighlight 
-                  style={styles.button} 
-                  onPress={this.onLoginPress.bind(this)} 
-                  underlayColor='#99d9f4'
-              >
-                  <Text style={styles.buttonText}>Login</Text>
-              </TouchableHighlight>
-              <Text 
-                  style={styles.forgotPassText} 
-                  onPress={this.onForgotPassPress.bind(this)}  >
-                  Forgot your password?
-              </Text>
-            </View>
-        );
+      return (
+          <View style={styles.container}>
+            <Form
+                ref="form"
+                type={User}
+                options={options}
+                value={this.state.value}
+                onChange={this.onChange.bind(this)}
+            />
+            <TouchableHighlight 
+                style={styles.button} 
+                onPress={this.onLoginPress.bind(this)} 
+                underlayColor='#99d9f4'
+            >
+                <Text style={styles.buttonText}>Login</Text>
+            </TouchableHighlight>
+            <Text 
+                style={styles.forgotPassText} 
+                onPress={this.onForgotPassPress.bind(this)}  >
+                Forgot your password?
+            </Text>
+          </View>
+      );
     }
 }
 
@@ -103,6 +122,10 @@ var styles = StyleSheet.create({
     padding: 20,
     textAlign: 'center',
     color: '#FF7575'
+  },
+  spinner: {
+    justifyContent: 'center',
+    flex: 1
   }
 });
 

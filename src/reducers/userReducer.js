@@ -1,9 +1,8 @@
-import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_ERROR} from '../constants';
+import {FETCHING_DATA, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR} from '../constants';
 
 const initialState = {
     data: null,
-    loggedIn: false,
-    error: false
+    err_message: ""
 }
 
 export function userReducer(state = initialState, action){
@@ -11,20 +10,22 @@ export function userReducer(state = initialState, action){
         case FETCHING_DATA:
             return {
                 ...state,
-                data: [],
-                isFetching: true
+                isFetching: true,
+                viewState: FETCHING_DATA
             }
-        case FETCHING_DATA_SUCCESS: 
+        case LOGIN_USER_SUCCESS: 
             return {
                 ...state,
                 data: action.data,
+                viewState: LOGIN_USER_SUCCESS,
                 isFetching: false
             }
-        case FETCHING_DATA_ERROR:
+        case LOGIN_USER_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                error: true
+                viewState: LOGIN_USER_ERROR,
+                err_message: action.err
             }
         default:
             return state

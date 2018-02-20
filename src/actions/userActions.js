@@ -1,11 +1,17 @@
-import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_ERROR} from '../constants/';
+import {FETCHING_DATA, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR} from '../constants/';
 import axios from 'axios';
 
-export const loginUser = (genres) => {
+let userUrl = 'http://localhost:8000/users';
+
+export const loginUser = (params) => {
     return (dispatch) => {
         dispatch(loading())
-        axios.get('http://localhost:8000/users')
-        .then(function ({data}) {
+        axios.post(userUrl, params)
+        .then((res) => {
+            const { data } = res;
+            const { err } = data;
+            return err ? 
+            dispatch(getDataFailure(err)) :
             dispatch(getDataSuccess(data))
         })
         .catch((err) => dispatch(getDataFailure(err)))
@@ -20,14 +26,14 @@ export const loading = () => {
 
 export const getDataSuccess = data => {
     return {
-        type: FETCHING_DATA_SUCCESS,
+        type: LOGIN_USER_SUCCESS,
         data
     }
 }
 
 export const getDataFailure = (err) => {
     return {
-        type: FETCHING_DATA_ERROR,
+        type: LOGIN_USER_ERROR,
         err
     }
 }
