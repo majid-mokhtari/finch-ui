@@ -1,4 +1,9 @@
-import {FETCHING_DATA, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR} from '../constants/';
+import {
+    FETCHING_DATA, 
+    LOGIN_USER_SUCCESS, 
+    LOGIN_USER_ERROR,
+    RESET_DATA
+} from '../constants/';
 import axios from 'axios';
 
 let userUrl = 'http://localhost:8000/users';
@@ -21,6 +26,12 @@ export const loginUser = (params) => {
 export const loading = () => {
     return {
         type: FETCHING_DATA
+    }
+}
+
+export const resetData = () => {
+    return {
+        type: RESET_DATA
     }
 }
 

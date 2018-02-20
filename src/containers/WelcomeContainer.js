@@ -21,6 +21,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff'
     }
-  });
+});
 
-export default WelcomeContainer;
+    
+const mapStateToProps = ({ userReducer }) => {
+    return {
+        userReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+      };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(WelcomeContainer)

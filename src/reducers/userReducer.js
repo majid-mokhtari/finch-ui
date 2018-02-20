@@ -1,4 +1,4 @@
-import {FETCHING_DATA, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR} from '../constants';
+import * as types from '../constants';
 
 const initialState = {
     data: null,
@@ -7,26 +7,35 @@ const initialState = {
 
 export function userReducer(state = initialState, action){
     switch(action.type){
-        case FETCHING_DATA:
+        case types.FETCHING_DATA:
             return {
                 ...state,
                 isFetching: true,
-                viewState: FETCHING_DATA
+                viewState: types.FETCHING_DATA,
+                error_message: ""
             }
-        case LOGIN_USER_SUCCESS: 
+        case types.LOGIN_USER_SUCCESS: 
             return {
                 ...state,
                 data: action.data,
-                viewState: LOGIN_USER_SUCCESS,
+                viewState: types.LOGIN_USER_SUCCESS,
                 isFetching: false,
                 error_message: ""
             }
-        case LOGIN_USER_ERROR:
+        case types.LOGIN_USER_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                viewState: LOGIN_USER_ERROR,
+                viewState: types.LOGIN_USER_ERROR,
                 error_message: action.err
+            }
+        case types.RESET_DATA:
+            return {
+                ...state,
+                data: null,
+                isFetching: false,
+                viewState: types.RESET_DATA,
+                error_message: ""
             }
         default:
             return state

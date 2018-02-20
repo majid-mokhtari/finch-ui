@@ -7,7 +7,8 @@ import WelcomeCarousel from './Carousel';
 class Welcome extends Component {
 
     onEmailLoginClick(){
-      Actions.auth("login", true);
+      this.props.userActions.resetData()
+      Actions.auth("login");
     }
 
     onjoinUsClick(){
