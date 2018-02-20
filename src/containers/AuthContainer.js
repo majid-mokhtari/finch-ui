@@ -15,7 +15,7 @@ class AuthContainer extends Component {
         const { viewState } = nextProps.userReducer;
         switch(viewState){
             case types.LOGIN_USER_SUCCESS:
-                Actions.home()
+                Actions.main()
                 break;
         }
     }

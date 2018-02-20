@@ -9,8 +9,10 @@ const RouterComponent = () => {
         <Router>
             <Stack key="root">
                 <Scene key="welcome" component={WelcomeContainer} title="Welcome" initial/>
-                <Scene key="auth" component={AuthContainer} title="Please Login" />
-                <Scene key="home" component={HomeContainer} title="Home" />
+                <Scene key="auth" component={AuthContainer} title="Finch" />
+                <Scene key="main" hideNavBar>
+                    <Scene key="home" component={HomeContainer} title="Finch" />
+                </Scene>
             </Stack>
         </Router>
     );

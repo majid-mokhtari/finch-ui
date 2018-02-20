@@ -6,12 +6,27 @@ import {
 } from '../constants/';
 import axios from 'axios';
 
-let userUrl = 'http://localhost:8000/users';
+let userUrl = 'http://localhost:8000/user/';
 
 export const loginUser = (params) => {
     return (dispatch) => {
         dispatch(loading())
-        axios.post(userUrl, params)
+        axios.post(`${userUrl}login`, params)
+        .then((res) => {
+            const { data } = res;
+            const { err } = data;
+            return err ? 
+            dispatch(getDataFailure(err)) :
+            dispatch(getDataSuccess(data))
+        })
+        .catch((err) => dispatch(getDataFailure(err)))
+    }
+}
+
+export const signupUser = (params) => {
+    return (dispatch) => {
+        dispatch(loading())
+        axios.post(`${userUrl}signup`, params)
         .then((res) => {
             const { data } = res;
             const { err } = data;

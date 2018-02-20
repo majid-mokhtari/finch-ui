@@ -4,6 +4,9 @@ import Tcomb from 'tcomb-form-native';
 
 const { Form } = Tcomb.form;    
 const User = Tcomb.struct({
+  name: Tcomb.String,
+  location: Tcomb.String,
+  birthday: Tcomb.String,
   email: Tcomb.String,             
   password: Tcomb.String,  
 });
@@ -23,6 +26,24 @@ const inputStyles = {
 }
 const options = {
     fields: {
+        name: {
+          label: 'Name',
+          placeholder: 'Please enter name',
+          error: 'Insert your name',
+          stylesheet: inputStyles
+        },
+        location: {
+          label: 'Location',
+          placeholder: 'Please enter location',
+          error: 'Insert location',
+          stylesheet: inputStyles
+        },
+        birthday: {
+          label: 'Birthday',
+          placeholder: 'Please enter birthday',
+          error: 'Insert a valid birthday',
+          stylesheet: inputStyles
+        },
         email: {
           label: 'Email',
           placeholder: 'Please enter email',
@@ -38,47 +59,51 @@ const options = {
 };
 
 class Signup extends Component {
-
-    onLoginPress() {
-        let value = this.refs.form.getValue();
-        if (value) { 
-          console.log(value);
+    constructor(props){
+      super();
+      this.state = {
+        value: {
+          name: "",
+          location: "",
+          birthday: "",
+          email: "",
+          password: "",
+          confirm_password: ""
         }
       }
-    
-    onForgotPassPress(){
-        console.log("worked")
+    }
+    onLoginPress() {
+      let value = this.refs.form.getValue();
+      const { userActions } = this.props;
+      if (value) { 
+        userActions.signupUser(value);
+      }
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-              <Form
-                  ref="form"
-                  type={User}
-                  options={options}
-              />
-              <TouchableHighlight 
-                  style={styles.button} 
-                  onPress={this.onLoginPress.bind(this)} 
-                  underlayColor='#99d9f4'
-              >
-                  <Text style={styles.buttonText}>Login</Text>
-              </TouchableHighlight>
-              <Text 
-                  style={styles.forgotPassText} 
-                  onPress={this.onForgotPassPress.bind(this)}  >
-                  Forgot your password? sign
-              </Text>
-            </View>
-        );
+      return (
+          <View style={styles.container}>
+            <Form
+                ref="form"
+                type={User}
+                options={options}
+            />
+            <TouchableHighlight 
+                style={styles.button} 
+                onPress={this.onLoginPress.bind(this)} 
+                underlayColor='#99d9f4'
+            >
+                <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableHighlight>
+          </View>
+      );
     }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     padding: 20,
     backgroundColor: '#ffffff',
   },

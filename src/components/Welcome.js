@@ -12,6 +12,7 @@ class Welcome extends Component {
     }
 
     onjoinUsClick(){
+      this.props.userActions.resetData()
       Actions.auth("signup");
     }
 
