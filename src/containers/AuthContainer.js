@@ -28,13 +28,13 @@ class AuthContainer extends Component {
         if(isFetching){
             return (
                 <Spinner 
-                style={styles.spinner} 
-                color="red" 
+                    style={styles.spinner} 
+                    color="red" 
                 />
             )
         }
         return (
-            <View style={{flex: 1, backgroundColor: '#fff'}}>
+            <View style={styles.authView}>
                 <Welcome {...this.props} />
             </View>
         )
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     spinner: {
       justifyContent: 'center',
       flex: 1
+    },
+    authView: {
+        flex: 1,
+        backgroundColor: '#fff'
     }
   });
 
