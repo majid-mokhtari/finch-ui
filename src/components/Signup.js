@@ -53,6 +53,7 @@ const options = {
         password: {
           label: 'Password',
           placeholder: 'Please enter password',
+          error: 'Insert a valid password',
           stylesheet: inputStyles
         }
       }
