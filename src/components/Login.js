@@ -46,7 +46,7 @@ class Login extends Component {
       this.state = {
         value: {
           email: "",
-          password: ""
+          password: "",
         }
       }
     }
@@ -97,7 +97,6 @@ class Login extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     padding: 20,
     backgroundColor: '#ffffff',
   },

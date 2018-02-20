@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as userActions from '../actions/userActions';
-import {View, StyleSheet} from 'react-native';
-import Welcome from './../components/Welcome';
+import { View, StyleSheet, Text } from 'react-native';
+import Login from './../components/Login';
+import Signup from './../components/Signup';
 import * as types from '../constants';
 import { Actions } from 'react-native-router-flux';
 import { Spinner } from 'native-base';
@@ -11,20 +12,16 @@ import { Spinner } from 'native-base';
 class AuthContainer extends Component {
 
     componentWillReceiveProps(nextProps){
-        const { userReducer } = nextProps;
-        switch(userReducer.viewState){
+        const { viewState } = nextProps.userReducer;
+        switch(viewState){
             case types.LOGIN_USER_SUCCESS:
                 Actions.home()
                 break;
-            case types.LOGIN_USER_ERROR:
-                Actions.login(nextProps)
-                break;
         }
     }
-
     render(){
-        const { userReducer } = this.props;
-        const { isFetching } = userReducer;
+        const { data, userReducer } = this.props;
+        const { isFetching, error_message } = userReducer;
         if(isFetching){
             return (
                 <Spinner 
@@ -33,9 +30,17 @@ class AuthContainer extends Component {
                 />
             )
         }
+        const content = data === "login" ? (
+            <Login {...this.props} />
+        ) : (
+            <Signup {...this.props} />
+        )
         return (
             <View style={styles.authView}>
-                <Welcome {...this.props} />
+                <View style={styles.errView}>
+                    <Text style={styles.errText}>{error_message}</Text>
+                </View>
+                {content}
             </View>
         )
     }
@@ -48,7 +53,15 @@ const styles = StyleSheet.create({
     },
     authView: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        justifyContent: 'flex-start'
+    },
+    errView: {
+        alignItems: "center",
+        marginTop: 20
+    },
+    errText: {
+        color: "#FF7575"
     }
   });
 

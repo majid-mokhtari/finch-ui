@@ -68,7 +68,7 @@ class Signup extends Component {
               <Text 
                   style={styles.forgotPassText} 
                   onPress={this.onForgotPassPress.bind(this)}  >
-                  Forgot your password?
+                  Forgot your password? sign
               </Text>
             </View>
         );

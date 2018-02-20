@@ -7,17 +7,14 @@ import WelcomeCarousel from './Carousel';
 class Welcome extends Component {
 
     onEmailLoginClick(){
-      const { userActions, userReducer } = this.props;
-      Actions.login({ userActions, userReducer });
+      Actions.auth("login", true);
     }
 
     onjoinUsClick(){
-      const { userActions, userReducer } = this.props;
-      Actions.signup({ userActions, userReducer });
+      Actions.auth("signup");
     }
 
     render(){
-      const { data } = this.props.userReducer;
         return (
             <View style={styles.welcomeWrapper}>
                 <View >
