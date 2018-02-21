@@ -1,8 +1,8 @@
 import * as types from '../constants';
 
 const initialState = {
-    data: null,
-    error_message: ""
+    data: [],
+    error_message: null
 }
 
 export function userReducer(state = initialState, action){
@@ -12,7 +12,7 @@ export function userReducer(state = initialState, action){
                 ...state,
                 isFetching: true,
                 viewState: types.FETCHING_DATA,
-                error_message: ""
+                error_message: null
             }
         case types.LOGIN_USER_SUCCESS: 
             return {
@@ -20,7 +20,7 @@ export function userReducer(state = initialState, action){
                 data: action.data,
                 viewState: types.LOGIN_USER_SUCCESS,
                 isFetching: false,
-                error_message: ""
+                error_message: null
             }
         case types.LOGIN_USER_ERROR:
             return {
@@ -32,10 +32,10 @@ export function userReducer(state = initialState, action){
         case types.RESET_DATA:
             return {
                 ...state,
-                data: null,
+                data: [],
                 isFetching: false,
                 viewState: types.RESET_DATA,
-                error_message: ""
+                error_message: null
             }
         default:
             return state

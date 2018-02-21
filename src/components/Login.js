@@ -86,7 +86,7 @@ class Login extends Component {
             </TouchableHighlight>
             <Text 
                 style={styles.forgotPassText} 
-                onPress={this.onForgotPassPress.bind(this)}  >
+                onPress={this.onForgotPassPress.bind(this)}>
                 Forgot your password?
             </Text>
           </View>

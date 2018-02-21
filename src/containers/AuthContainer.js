@@ -31,7 +31,7 @@ class AuthContainer extends Component {
             )
         }
         const content = data === "login" ? (
-            <Login {...this.props} />
+            <Login userActions={this.props.userActions} />
         ) : (
             <Signup {...this.props} />
         )
