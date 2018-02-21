@@ -68,8 +68,7 @@ class Signup extends Component {
           location: "",
           birthday: "",
           email: "",
-          password: "",
-          confirm_password: ""
+          password: ""
         }
       }
     }
