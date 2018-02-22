@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import Tcomb from 'tcomb-form-native';
+import moment from 'moment';
+import DatePicker from './DatePicker';
+
+var Gender = Tcomb.enums({
+  M: 'Male',
+  F: 'Female'
+});
 
 const { Form } = Tcomb.form;    
 const User = Tcomb.struct({
   name: Tcomb.String,
-  location: Tcomb.String,
-  birthday: Tcomb.String,
+  gender: Gender,
+  city: Tcomb.String,
   email: Tcomb.String,             
   password: Tcomb.String,  
 });
@@ -32,16 +39,16 @@ const options = {
           error: 'Insert your name',
           stylesheet: inputStyles
         },
-        location: {
-          label: 'Location',
+        city: {
+          label: 'City',
           placeholder: 'Please enter location',
           error: 'Insert location',
           stylesheet: inputStyles
         },
-        birthday: {
-          label: 'Birthday',
-          placeholder: 'Please enter birthday',
-          error: 'Insert a valid birthday',
+        gender: {
+          label: 'Gender',
+          placeholder: 'Please enter gender',
+          error: 'Insert a valid gender',
           stylesheet: inputStyles
         },
         email: {
@@ -63,12 +70,13 @@ class Signup extends Component {
     constructor(props){
       super();
       this.state = {
+        stage: "first",
         value: {
           name: "",
           location: "",
-          birthday: "",
           email: "",
-          password: ""
+          password: "",
+          gender: ""
         }
       }
     }
@@ -77,12 +85,19 @@ class Signup extends Component {
       const { userActions } = this.props;
       if (value) { 
         userActions.signupUser(value);
+        console.log(value)
       }
     }
 
     render() {
+      const { stage } = this.state;
+      if(stage === "first"){
+        return (
+          <DatePicker />
+        )
+      }
       return (
-          <View style={styles.container}>
+          <ScrollView style={styles.container}>
             <Form
                 ref="form"
                 type={User}
@@ -95,7 +110,7 @@ class Signup extends Component {
             >
                 <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableHighlight>
-          </View>
+          </ScrollView>
       );
     }
 }
@@ -103,7 +118,6 @@ class Signup extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     padding: 20,
     backgroundColor: '#ffffff',
   },
