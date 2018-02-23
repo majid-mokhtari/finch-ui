@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import Tcomb from 'tcomb-form-native';
 import moment from 'moment';
-import DatePicker from './DatePicker';
-
-var Gender = Tcomb.enums({
-  M: 'Male',
-  F: 'Female'
-});
+import AgeGender from './AgeGender';
 
 const { Form } = Tcomb.form;    
 const User = Tcomb.struct({
   name: Tcomb.String,
-  gender: Gender,
   city: Tcomb.String,
   email: Tcomb.String,             
   password: Tcomb.String,  
@@ -45,12 +39,6 @@ const options = {
           error: 'Insert location',
           stylesheet: inputStyles
         },
-        gender: {
-          label: 'Gender',
-          placeholder: 'Please enter gender',
-          error: 'Insert a valid gender',
-          stylesheet: inputStyles
-        },
         email: {
           label: 'Email',
           placeholder: 'Please enter email',
@@ -71,12 +59,13 @@ class Signup extends Component {
       super();
       this.state = {
         stage: "first",
+        birthdate: "",
+        gender: 'M',
         value: {
           name: "",
           location: "",
           email: "",
           password: "",
-          gender: ""
         }
       }
     }
@@ -89,15 +78,24 @@ class Signup extends Component {
       }
     }
 
+    onDatePickerChange(date){
+      this.setState({ 
+        birthdate: date
+      })
+    }
+
     render() {
       const { stage } = this.state;
       if(stage === "first"){
         return (
-          <DatePicker />
+          <AgeGender 
+            onDatePickerChange={this.onDatePickerChange.bind(this)}
+            gender={this.state.gender}
+          />
         )
-      }
+      } 
       return (
-          <ScrollView style={styles.container}>
+          <View style={styles.container}>
             <Form
                 ref="form"
                 type={User}
@@ -110,7 +108,7 @@ class Signup extends Component {
             >
                 <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableHighlight>
-          </ScrollView>
+          </View>
       );
     }
 }
@@ -119,6 +117,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    justifyContent: 'center',
     backgroundColor: '#ffffff',
   },
   title: {
@@ -126,22 +125,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 30
   },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
   button: {
     height: 50,
     backgroundColor: 'red',
     borderRadius: 8,
     justifyContent: 'center',
     marginTop: 10
-  },
-  forgotPassText: {
-    padding: 20,
-    textAlign: 'center',
-    color: '#FF7575'
   }
 });
 
