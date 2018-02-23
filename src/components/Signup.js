@@ -78,10 +78,12 @@ class Signup extends Component {
       }
     }
 
-    onDatePickerChange(date){
-      this.setState({ 
-        birthdate: date
-      })
+    onDatePickerChange(birthdate){
+      this.setState({ birthdate });
+    }
+
+    onNextPress(gender){
+      this.setState({ gender, stage: "second"});
     }
 
     render() {
@@ -91,6 +93,7 @@ class Signup extends Component {
           <AgeGender 
             onDatePickerChange={this.onDatePickerChange.bind(this)}
             gender={this.state.gender}
+            onNextPress={this.onNextPress.bind(this)}
           />
         )
       } 
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: '#ffffff',
   },
   title: {
@@ -131,7 +134,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     marginTop: 10
-  }
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
 });
 
 export default Signup;

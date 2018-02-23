@@ -15,9 +15,16 @@ class AgeGender extends Component {
       this.props.onDatePickerChange(date);
     }
 
+    onNextPress(){
+        const { gender } = this.state;
+        this.props.onNextPress(gender);
+    }
+
     render() {
       const { gender } = this.state;
-
+      const { radioButton, activeRadioButton } = styles;
+      let maleStyle = gender === "M" ? activeRadioButton : radioButton; 
+      let femaleStyle = gender === "F" ? activeRadioButton : radioButton;
       return (
             <View style={styles.container}>
 
@@ -25,7 +32,7 @@ class AgeGender extends Component {
                     <View style={{ alignItems: 'center'}}>
                         <Text style={{marginBottom: 40, fontSize: 20}}>What is your date of birth?</Text>
                     </View>
-                    <View>
+                    <View style={{marginRight: 40}}>
                         <DatePicker 
                             onDatePickerChange={this.onDatePickerChange.bind(this)}
                         />
@@ -40,20 +47,30 @@ class AgeGender extends Component {
                     </View>
                     <View style={styles.radioButtonsView}>
                         <TouchableHighlight 
-                            style={styles.radioButton} 
-                            onPress={() => {console.log("df")}} 
+                            style={maleStyle} 
+                            onPress={() => this.setState({gender: "M"})} 
                             underlayColor='#99d9f4'
                         >
                             <Text style={styles.radioButtonText}>Male</Text>
                         </TouchableHighlight>
                         <TouchableHighlight 
-                            style={styles.radioButton} 
-                            onPress={() => {console.log("df")}} 
+                            style={femaleStyle} 
+                            onPress={() => this.setState({gender: "F"})} 
                             underlayColor='#99d9f4'
                         >
                             <Text style={styles.radioButtonText}>Female</Text>
                         </TouchableHighlight>
                     </View>
+                </View>
+
+                <View style={styles.nextButtonView}>
+                    <TouchableHighlight 
+                        style={styles.button} 
+                        onPress={this.onNextPress.bind(this)} 
+                        underlayColor='#99d9f4'
+                    >
+                        <Text style={styles.buttonText}>Next</Text>
+                    </TouchableHighlight>
                 </View>
 
             </View>
@@ -68,10 +85,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  activeRadioButton: {
+    width: 100,
+    height: 50,
+    backgroundColor: '#79E9FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    borderRadius: 5
+  },
   radioButton: {
     width: 100,
     height: 50,
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
@@ -83,6 +112,17 @@ const styles = StyleSheet.create({
   radioButtonsView: {
     flex: 1,
     flexDirection: 'row',
+  },
+  nextButtonView: {
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
+  button: {
+    height: 50,
+    width: 240,
+    backgroundColor: 'red',
+    borderRadius: 8,
+    justifyContent: 'center'
   },
   buttonText: {
     fontSize: 18,

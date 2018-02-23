@@ -20,7 +20,7 @@ class MyDatePicker extends Component {
   render(){
     return (
       <DatePicker
-        style={{width: 300}}
+        style={{width: 270}}
         date={this.state.date}
         mode="date"
         placeholder="select date"
@@ -35,7 +35,9 @@ class MyDatePicker extends Component {
             marginLeft: 0
           },
           dateInput: {
-            marginLeft: 36
+            marginLeft: 36, 
+            borderRadius: 5,
+            borderColor: 'lightgrey',
           }
           // ... You can check the source to find the other keys.
         }}
