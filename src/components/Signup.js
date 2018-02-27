@@ -69,12 +69,13 @@ class Signup extends Component {
         }
       }
     }
-    onLoginPress() {
+    onSignupPress() {
       let value = this.refs.form.getValue();
+      const { birthdate, gender } = this.state;
+      value = Object.assign({ birthdate, gender }, value);
       const { userActions } = this.props;
       if (value) { 
         userActions.signupUser(value);
-        console.log(value)
       }
     }
 
@@ -106,7 +107,7 @@ class Signup extends Component {
             />
             <TouchableHighlight 
                 style={styles.button} 
-                onPress={this.onLoginPress.bind(this)} 
+                onPress={this.onSignupPress.bind(this)} 
                 underlayColor='#99d9f4'
             >
                 <Text style={styles.buttonText}>Sign Up</Text>

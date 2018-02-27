@@ -24,6 +24,9 @@ export const loginUser = (params) => {
 }
 
 export const signupUser = (params) => {
+    var date_arr = params.birthdate.split(" ");
+    params.birthdate = date_arr[0] + "T" + date_arr[1] + "-00:00";
+    params.status = "Registered";
     return (dispatch) => {
         dispatch(loading())
         axios.post(`${userUrl}signup`, params)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
-import moment from 'moment';
 import DatePicker from './DatePicker';
+import moment from 'moment';
 
 class AgeGender extends Component {
 
@@ -12,7 +12,7 @@ class AgeGender extends Component {
         }
     }
     onDatePickerChange(date){
-      this.props.onDatePickerChange(date);
+      this.props.onDatePickerChange(moment(date).format('YYYY-MM-DD HH:mm:ss'));
     }
 
     onNextPress(){
