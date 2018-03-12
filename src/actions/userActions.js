@@ -4,20 +4,22 @@ import {
     LOGIN_USER_ERROR,
     RESET_DATA
 } from '../constants/';
+import { Rest, baseUrl } from '../lib/rest';
 import axios from 'axios';
-
-let userUrl = 'http://localhost:8000/user/';
+import * as util from '../lib/util';
 
 export const loginUser = (params) => {
     return (dispatch) => {
         dispatch(loading())
-        axios.post(`${userUrl}login`, params)
+        Rest.post(`${baseUrl}login`, params)
+        .then(util.handleErrors)
+        .then(res => res.json())
+        .then(util.storeCurrentUser)
         .then((res) => {
-            const { data } = res;
-            const { err } = data;
+            const { err } = res;
             return err ? 
             dispatch(getDataFailure(err)) :
-            dispatch(getDataSuccess(data))
+            dispatch(getDataSuccess(res))
         })
         .catch((err) => {
             dispatch(getDataFailure(err))
@@ -31,7 +33,7 @@ export const signupUser = (params) => {
     params.status = "Registered";
     return (dispatch) => {
         dispatch(loading())
-        axios.post(`${userUrl}signup`, params)
+        Rest.post(`${baseUrl}signup`, params)
         .then((res) => {
             const { data } = res;
             const { err } = data;

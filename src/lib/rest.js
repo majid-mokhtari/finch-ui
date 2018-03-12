@@ -1,7 +1,5 @@
 import { getCurrentUser } from './util';
-export const baseUrl = window.__SERVER_VARS__.attributes.baseUrl !== "" ? window.__SERVER_VARS__.attributes.baseUrl : "http://localhost:5007/admin/api/v1";
-export const constitutionUrl = window.__SERVER_VARS__.attributes.constitutionUrl !== "" ? window.__SERVER_VARS__.attributes.constitutionUrl : "http://localhost:8080";
-export const factoryTrackerUrl =  window.__SERVER_VARS__.attributes.factoryTrackerUrl !== "" ? window.__SERVER_VARS__.attributes.factoryTrackerUrl : "http://localhost:8095";
+export const baseUrl = 'http://localhost:8000/user/';
 
 export const Rest = {
   baseUrl() {
