@@ -13,8 +13,8 @@ export const loginUser = (params) => {
         dispatch(loading())
         Rest.post(`${baseUrl}login`, params)
         .then(util.handleErrors)
-        .then(res => res.json())
         .then(util.storeCurrentUser)
+        .then(res => res.json())
         .then((res) => {
             const { err } = res;
             return err ? 
