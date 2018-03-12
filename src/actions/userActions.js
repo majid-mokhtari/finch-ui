@@ -19,7 +19,9 @@ export const loginUser = (params) => {
             dispatch(getDataFailure(err)) :
             dispatch(getDataSuccess(data))
         })
-        .catch((err) => dispatch(getDataFailure(err)))
+        .catch((err) => {
+            dispatch(getDataFailure(err))
+        })
     }
 }
 
