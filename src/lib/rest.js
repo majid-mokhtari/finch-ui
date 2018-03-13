@@ -1,5 +1,5 @@
 import { getCurrentUser } from './util';
-export const baseUrl = 'http://localhost:8000/user/';
+export const baseUrl = 'http://localhost:8000/';
 
 export const Rest = {
   baseUrl() {

@@ -29,8 +29,11 @@ export function userLoggedOut() {
 
 export function handleAuthResponse(response) {
   const cookie = response.headers.map['set-cookie'];
-  let arr = cookie[0].split("=");
-  response.token = arr[1];
+  if(cookie){
+    let arr = cookie[0].split("=");
+    response.token = arr[1];
+    return response;  
+  }
   return response;
 }
 

@@ -7,6 +7,10 @@ import Welcome from './../components/Welcome';
 
 class WelcomeContainer extends Component {
 
+    componentDidMount(){
+        //this.props.userActions.authUser();
+    }
+        
     render(){
         return (
             <View style={styles.authView}>

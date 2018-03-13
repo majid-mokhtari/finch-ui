@@ -7,16 +7,35 @@ import {
 import { Rest, baseUrl } from '../lib/rest';
 import * as util from '../lib/util';
 
-export const loginUser = (params) => {
+let loginUrl = 'user/login';
+let signupUrl = 'user/signup';
+
+export const authUser = () => {
     return (dispatch) => {
         dispatch(loading())
-        Rest.post(`${baseUrl}login`, params)
+        Rest.get(`${baseUrl}`)
         .then(util.handleErrors)
         .then(util.handleAuthResponse)
         .then(util.storeCurrentUser)
         .then(res => res.json())
         .then((res) => {
-            console.log(util.Cookie);
+            console.log(res)
+        })
+        .catch((err) => {
+            dispatch(getDataFailure(err))
+        })
+    }
+}
+
+export const loginUser = (params) => {
+    return (dispatch) => {
+        dispatch(loading())
+        Rest.post(`${baseUrl}${loginUrl}`, params)
+        .then(util.handleErrors)
+        .then(util.handleAuthResponse)
+        .then(util.storeCurrentUser)
+        .then(res => res.json())
+        .then((res) => {
             const { err } = res;
             return err ? 
             dispatch(getDataFailure(err)) :
@@ -34,7 +53,7 @@ export const signupUser = (params) => {
     params.status = "Registered";
     return (dispatch) => {
         dispatch(loading())
-        Rest.post(`${baseUrl}signup`, params)
+        Rest.post(`${baseUrl}${signupUrl}`, params)
         .then((res) => {
             const { data } = res;
             const { err } = data;
