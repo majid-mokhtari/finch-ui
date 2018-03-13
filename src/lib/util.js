@@ -19,9 +19,7 @@ export function getCurrentUser() {
 }
 
 export function storeCurrentUser(response) {
-  const cookie = response.headers.map['set-cookie'];
-  let arr = cookie[0].split(COOKIE_PATH);
-  Cookie[COOKIE_PATH] = arr[1];
+  Cookie[COOKIE_PATH] = response
   return response;
 }
 
@@ -31,11 +29,9 @@ export function userLoggedOut() {
 
 export function handleAuthResponse(response) {
   const cookie = response.headers.map['set-cookie'];
-    return {
-      ...response,
-      token
-    }
-  console.log(response)
+  let arr = cookie[0].split("=");
+  response.token = arr[1];
+  return response;
 }
 
 export function handleErrors(response) {

@@ -5,7 +5,6 @@ import {
     RESET_DATA
 } from '../constants/';
 import { Rest, baseUrl } from '../lib/rest';
-import axios from 'axios';
 import * as util from '../lib/util';
 
 export const loginUser = (params) => {
@@ -13,9 +12,11 @@ export const loginUser = (params) => {
         dispatch(loading())
         Rest.post(`${baseUrl}login`, params)
         .then(util.handleErrors)
+        .then(util.handleAuthResponse)
         .then(util.storeCurrentUser)
         .then(res => res.json())
         .then((res) => {
+            console.log(util.Cookie);
             const { err } = res;
             return err ? 
             dispatch(getDataFailure(err)) :
