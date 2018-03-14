@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, Alert, Image } from 'react-native';
-import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
-import WelcomeCarousel from './Carousel';
+import WelcomeCarousel from './WelcomeCarousel';
 
 class Welcome extends Component {
 
